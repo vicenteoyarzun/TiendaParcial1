@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de mascotas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    header nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #0066cc;
+    }
+    .cart {
+      font-weight: bold;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #eee;
+      padding: 20px;
+    }
+    .hero button {
+      padding: 10px 15px;
+      background: white;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      background: #ddd;
+      margin-bottom: 10px;
+    }
+    footer {
+      background: #f2f2f2;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .newsletter input {
+      padding: 5px;
+    }
+    .newsletter button {
+      padding: 6px 10px;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Tienda online</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="Productos.html">Productos</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Blogs</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <div class="cart">🛒 Carrito</div>
+</header>
+
+<div class="hero">
+  <div class="text">
+    <h1>TIENDA ONLINE</h1>
+    <p>Descubre nuevos productos para tus queridas mascotas</p>
+    <button onclick="location.href='Productos.html'">Ver productos</button> <!--Boton ver producto-->
+
+  </div>
+  <div class="image">
+    <img src="Imagenes/Perroestrella.jpg" alt="Banner" style="width:1700px; height:400px; background:#ccc;">
+  </div>
+</div>
+
+<section class="products">
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 1</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 2</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 3</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 4</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 5</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 6</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 7</p>
+    <p>$0.00</p>
+  </div>
+  <div class="product">
+    <img src="Imagenes/Perroestrella.jpg">
+    <p class="title">Producto 8</p>
+    <p>$0.00</p>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <p>Tienda online</p>
+    <a href="#">Category X</a> | <a href="#">Category Y</a> | <a href="#">Category Z</a>
+  </div>
+  <div class="newsletter">
+    <label>Suscríbete: </label>
+    <input type="email" placeholder="Enter email">
+    <button>Subscribe</button>
+  </div>
+</footer>
+
+</body>
+</html>

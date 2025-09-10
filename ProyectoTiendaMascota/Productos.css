@@ -1,0 +1,35 @@
+.product {
+  border: 1px solid #ccc;
+  width: 350px;
+  padding: 30px;
+  gap: 20px;
+  text-align: center;
+  background: #ffffff; /* Color del fondo */
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  border-radius: 8px;
+  will-change: transform;
+
+}
+.product:hover {
+  transform: scale(1.02); /* Agranda el cuadro un 5% */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  z-index: 1;
+}
+.logo img { /* Clase para la imagen del logo */
+  width: 150px;
+  
+  height: auto; /* Mantiene la proporción original */
+}
+.product img { /* Clase para las imágenes de los productos */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 6px;
+}
+
+.product:hover img {
+  transform: scale(1.05);
+}
+
