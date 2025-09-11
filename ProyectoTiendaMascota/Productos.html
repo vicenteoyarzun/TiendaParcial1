@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos</title>
+  <link rel="stylesheet" href="Productos.css">
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+    }
+    header nav a {
+      margin: 0 30px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .cart {
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      background: #ffffff;
+    }
+    .product img {
+      width: 100%;
+      height: 150px;
+      background: #ffffff;
+      margin-bottom: 10px;
+    }
+    .product-title {
+      color: #0066cc;
+      margin: 5px 0;
+    }
+    .price {
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .product button {
+      padding: 6px 12px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .product button:hover {
+      background: #333;
+    }
+  </style>
+<header>
+  <div class="logo">
+    <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+  </div>
+  <nav>
+    <a href="PaginaPrincipalHome.html">Home</a>
+    <a href="#">Productos</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Blogs</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <div class="cart">Carrito</div>
+</header>
+
+<h1> CATALOGO DE PRODUCTOS</h1>
+
+<!--Bloque 1: Alimento Perro Champion Adulto (Antigua version)-->
+<section class="products">
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <img src="Img_productos/AlimentoPerroAdultoChampion.webp" alt="Alimento para perro adulto" class="zoomable">
+    <p class="product-title">Alimento para Perro Adulto Carne y Pollo 15 kg</p>
+    <p class="price">$20.990</p>
+    <button class="add-button">Añadir</button>
+  </div>
+
+<!--Bloque 2: Salsa Perro MasterDog-->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <img src="Img_productos/AlimentoPerroAdultoCachupin25kg.webp" alt="Alimento para perro adulto" class="zoomable">
+    <p class="product-title">Alimento para Perro Adulto Carne 25 kg</p>
+    <p class="price">$41.990</p>
+    <button class="add-button">Añadir</button>
+  </div>
+
+<!--Bloque 3: Salsa Perro MasterDog-->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <img src="Img_productos/SalsaPerro300gr.webp" alt="Alimento para perro adulto" class="zoomable">
+    <p class="product-title">Salsa para perro carne al jugo 300gr</p>
+    <p class="price">$1.990</p>
+    <button class="add-button">Añadir</button>
+  </div>
+
+  <!--Bloque 4: Salsa Perro MasterDog-->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <img src="Img_productos/AlimentoPerroAdultoChampionDog3kg.webp" alt="Alimento para perro adulto" class="zoomable">
+    <p class="product-title">Alimento para Perro Adulto Carne pollo y vegetales 3 kg</p>
+    <p class="price">$ 8.990</p>
+    <button class="add-button">Añadir</button>
+  </div>
+</section>
+
+
+</body>
+</html>
