@@ -1,0 +1,91 @@
+/* registro.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom right, #e8f5e9, #f1b510);
+}
+
+.register-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    color: #34495e;
+    font-weight: bold;
+}
+
+input {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #388e3c;
+}
+
+#error-message {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.register-container::before {
+    top: -15px;
+    left: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234caf50' d='M12 2c2.21 0 4 1.79 4 4 0 1.5-.8 2.77-2 3.46v.04c2.21.2 4 2.06 4 4.34v.22c2.21.2 4 2.06 4 4.34 0 2.4-1.94 4.33-4.33 4.33H6.33C3.94 22.66 2 20.73 2 18.33c0-2.28 1.79-4.14 4-4.34v-.22c0-2.28 1.79-4.14 4-4.34v-.04c-1.2-.69-2-1.96-2-3.46 0-2.21 1.79-4 4-4z'/%3E%3C/svg%3E");
+}
+
+.register-container::after {
+    bottom: -15px;
+    right: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234caf50' d='M12 2c2.21 0 4 1.79 4 4 0 1.5-.8 2.77-2 3.46v.04c2.21.2 4 2.06 4 4.34v.22c2.21.2 4 2.06 4 4.34 0 2.4-1.94 4.33-4.33 4.33H6.33C3.94 22.66 2 20.73 2 18.33c0-2.28 1.79-4.14 4-4.34v-.22c0-2.28 1.79-4.14 4-4.34v-.04c-1.2-.69-2-1.96-2-3.46 0-2.21 1.79-4 4-4z'/%3E%3C/svg%3E");
+    transform: rotate(30deg);
+}
