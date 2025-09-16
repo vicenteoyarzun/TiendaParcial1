@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Noticias - Blogs</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff8f0;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Encabezado naranja */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 30px;
+      background: linear-gradient(to right, #ff8c00, #ff6a00);
+      color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      margin-bottom: 15px;
+    }
+
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    nav a.active {
+      background-color: #ff4500;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    /* Contenido principal */
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .center {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ff6a00;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .center::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background-color: #ff8c00;
+      border-radius: 2px;
+    }
+    
+    /* Secciones de noticias */
+    .noticia {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .noticia:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .texto {
+      flex: 3;
+      padding: 30px;
+    }
+    
+    .imagen {
+      flex: 2;
+      background-color: #ffe4cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ff8c00;
+      font-weight: bold;
+      font-size: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .imagen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255,140,0,0.1), rgba(255,106,0,0.2));
+    }
+    
+    h3 {
+      color: #ff6a00;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    button {
+      background-color: #ff8c00;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(255,140,0,0.3);
+    }
+    
+    button:hover {
+      background-color: #ff6a00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(255,106,0,0.4);
+    }
+    
+    /* Diseño responsivo */
+    @media (max-width: 900px) {
+      .noticia {
+        flex-direction: column;
+      }
+      
+      .imagen {
+        min-height: 200px;
+      }
+      
+      header {
+        padding: 15px;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .logo img {
+        height: 50px;
+      }
+      
+      h2.center {
+        font-size: 1.8rem;
+      }
+      
+      .texto, .imagen {
+        padding: 20px;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Aquí usamos la imagen como logo -->
+    <div class="logo">
+      <img src="Imagenes/LogoPaginaweb.png" alt="Logo Pets Store">
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="blogs.html" class="active">Blogs</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="center">NOTICIAS IMPORTANTES</h2>
+
+    <!-- Caso curioso 1 -->
+    <section class="noticia">
+      <div class="texto">
+        <h3>CASO CURIOSO #1</h3>
+        <p>
+          En Pets Store, el producto más vendido en 2024 fueron los juguetes interactivos
+          para gatos 🐱. Superaron incluso a los snacks para perros.
+        </p>
+        <button onclick="verCaso(1)">VER CASO</button>
+      </div>
+      <div class="imagen" aria-hidden="true">Imagen 1</div>
+    </section>
+
+    <!-- Caso curioso 2 -->
+    <section class="noticia">
+      <div class="texto">
+        <h3>CASO CURIOSO #2</h3>
+        <p>
+          Muchos clientes nos cuentan que sus perros 🐕 esperan junto a la puerta cuando
+          llega el repartidor, ¡como si supieran que el paquete es para ellos!
+        </p>
+        <button onclick="verCaso(2)">VER CASO</button>
+      </div>
+      <div class="imagen" aria-hidden="true">Imagen 2</div>
+    </section>
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    function verCaso(numero) {
+      if (numero === 1) {
+        alert("📌 Detalle del Caso Curioso #1:\n\nLos juguetes interactivos para gatos fueron el producto más vendido en 2024, superando incluso a los snacks para perros.");
+      } else if (numero === 2) {
+        alert("📌 Detalle del Caso Curioso #2:\n\nMuchos clientes nos cuentan que sus perros reconocen al repartidor y esperan ansiosos la llegada de su paquete de Pets Store.");
+      }
+    }
+  </script>
+</body>
+</html>
