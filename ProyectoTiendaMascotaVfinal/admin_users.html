@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Usuarios</title>
+  <link rel="stylesheet" href="Home.css">
+  <style>
+    :root { --sidebar-w:220px; --accent:#ff9443; }
+    body { margin:0; font-family:Arial, sans-serif; background:#f9f9f9; }
+    .sidebar {
+      position:fixed; left:0; top:0; bottom:0; width:var(--sidebar-w);
+      background:var(--accent); color:white; display:flex; flex-direction:column;
+      align-items:center; padding:20px 10px; box-sizing:border-box;
+    }
+    .sidebar img { max-width:120px; margin-bottom:20px; }
+    .menu { display:flex; flex-direction:column; width:100%; }
+    .menu a {
+      color:white; text-decoration:none; padding:12px 15px; border-radius:6px;
+      margin:4px 0; transition:background 0.3s;
+    }
+    .menu a:hover, .menu a.active { background:rgba(255,255,255,0.2); }
+    main { margin-left:var(--sidebar-w); padding:24px; }
+    .topbar {
+      display:flex; justify-content:space-between; align-items:center;
+      background:white; padding:12px 20px; border-radius:6px; margin-bottom:20px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 { margin:0; color:#333; }
+    .btn-logout {
+      padding:8px 14px; background:#ff9443; color:white; border:none;
+      border-radius:6px; cursor:pointer; font-weight:bold;
+    }
+    .btn-logout:hover { background:#e6833a; }
+    .table-card { background:white; border:1px solid #eee; padding:12px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:10px; border-bottom:1px solid #f0f0f0; }
+    thead th { background:#f7f7f7; }
+    .btn-new {
+      background:#000; color:white; padding:8px 14px; border-radius:6px;
+      cursor:pointer; border:none; font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="Imagenes/LogoPaginaweb.png" alt="Logo">
+    <div class="menu">
+      <a href="admin_dashboard.html">Dashboard</a>
+      <a class="active" href="admin_users.html">Usuarios</a>
+      <a href="#">Inventario</a>
+      <a href="#">Reportes</a>
+         <a href="#">Empleados</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="topbar">
+      <h2>Usuarios</h2>
+      <div>
+        <button class="btn-new" onclick="alert('Agregar usuario (simulado)')">NUEVO USUARIO</button>
+        <button class="btn-logout" id="btnLogout">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th><th>Usuario</th><th>Nombre</th><th>Email</th><th>Estado</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="usersTbody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    if(localStorage.getItem('isAdmin') !== 'true') {
+      alert('Acceso restringido a administradores.');
+      location.href = 'PaginaPrincipalHome.html';
+    }
+
+    const fakeUsers = [
+      { date:'2025-08-01', user:'XxPepitogamerxX', name:'Osama b', email:'BinLaden@demo.com', status:'Activo' },
+      { date:'2024-09-02', user:'PanConPaltaidx', name:'Gustavo', email:'Gustavo@demo.com', status:'Pendiente' },
+      { date:'2025-06-03', user:'SeuMadruga', name:"Ramón", email:'Ramon@demo.com', status:'Cancelado' },
+      { date:'2024-09-04', user:'_AlmaSoul_', name:'Alexis', email:'Sanchez@demo.com', status:'Procesando' },
+      { date:'2024-11-05', user:'MomoBenavidez', name:'Geronimo', email:'Geronimo@demo.com', status:'Activo' }
+    ];
+
+    const tbody = document.getElementById('usersTbody');
+    fakeUsers.forEach(u => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${u.date}</td><td>${u.user}</td><td>${u.name}</td><td>${u.email}</td><td>${u.status}</td>
+        <td><button onclick="alert('Editar ${u.user}')">Editar</button>
+            <button onclick="alert('Eliminar ${u.user}')">Eliminar</button></td>`;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('btnLogout').addEventListener('click', () => {
+      localStorage.removeItem('isAdmin');
+      localStorage.removeItem('loggedUser');
+      location.href = 'PaginaPrincipalHome.html';
+    });
+  </script>
+</body>
+</html>

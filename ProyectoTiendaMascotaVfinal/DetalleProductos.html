@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle Producto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-sizing: border-box;
+      height: 70px;
+    }
+    .logo img {
+      height: 50px; 
+    }
+    header nav a {
+      margin: 0 35px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .cart {
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      margin-left: 20px;
+      white-space: nowrap;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .breadcrumb {
+      margin: 90px 20px 20px; 
+      font-size: 14px;
+    }
+    .breadcrumb a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .product-detail {
+      display: flex;
+      padding: 20px;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .product-images {
+      flex: 1;
+    }
+    .main-image {
+      width: 100%;
+      height: 400px;
+      background: #f0f0f0;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .main-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .thumbnail-images {
+      display: flex;
+      gap: 10px;
+    }
+    .thumbnail {
+      width: 70px;
+      height: 70px;
+      background: #f0f0f0;
+      border: 2px solid transparent;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .thumbnail.active {
+      border-color: #ff9443;
+    }
+    .thumbnail img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+    .product-info {
+      flex: 1;
+      padding: 10px;
+    }
+    .product-info h1 {
+      margin: 0 0 15px;
+      color: #333;
+      font-size: 28px;
+    }
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #e53935;
+    }
+    .description {
+      margin: 20px 0;
+      line-height: 1.6;
+      color: #666;
+    }
+    .quantity {
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+    }
+    .quantity label {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .quantity input {
+      width: 60px;
+      text-align: center;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .add-to-cart {
+      background: #ff9443;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 20px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .add-to-cart:hover {
+      background: #e6833a;
+    }
+    .related {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .related h3 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+      border-bottom: 2px solid #ff9443;
+      padding-bottom: 10px;
+    }
+    .related-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .related-product {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .related-product:hover {
+      transform: translateY(-5px);
+    }
+    .related-product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .related-product-info {
+      padding: 15px;
+    }
+    .related-product-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .related-product-price {
+      color: #e53935;
+      font-weight: bold;
+    }
+    #carrito-detalle {
+      position: fixed;
+      top: 70px;
+      right: 30px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+      z-index: 2000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+    </div>
+    <nav>
+      <a href="PaginaPrincipalHome.html">Home</a>
+      <a href="Productos.html">Productos</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="Blogs.html">Blogs</a>
+      <a href="Contacto.html">Contacto</a>
+    </nav>
+    <div class="cart">
+      <img src="Imagenes/CarritoCompraBlanco.png" alt="Carrito" style="height:40px; vertical-align:middle;">
+      <span id="cart-count" style="background:red; color:white; border-radius:50%; padding:2px 8px; font-size:14px; position:relative; left:-15px; top:-10px;">0</span>
+      <div id="carrito-detalle"></div>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="PaginaPrincipalHome.html">Home</a> > <a href="Productos.html">Productos</a> > <span id="producto-actual">Alimento para Perro Adulto</span>
+  </div>
+
+  <section class="product-detail">
+    <div class="product-images">
+      <div class="main-image">
+        <img id="main-product-image" src="" alt="Imagen principal del producto">
+      </div>
+      <div class="thumbnail-images">
+        <div class="thumbnail active" onclick="cambiarImagen(this)">
+          <img src="" alt="Miniatura 1">
+        </div>
+        <div class="thumbnail" onclick="cambiarImagen(this)">
+          <img src="" alt="Miniatura 2">
+        </div>
+        <div class="thumbnail" onclick="cambiarImagen(this)">
+          <img src="" alt="Miniatura 3">
+        </div>
+      </div>
+    </div>
+    <div class="product-info">
+      <h1 id="product-title">Nombre del Producto</h1>
+      <p class="price" id="product-price">$0</p>
+      <p class="description" id="product-description">
+        Descripción del producto. Las características y beneficios se mostrarán aquí.
+      </p>
+      <div class="quantity">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" value="1" min="1">
+      </div>
+      <button class="add-to-cart" onclick="agregarAlCarrito()">Añadir al carrito</button>
+    </div>
+  </section>
+
+  <section class="related">
+    <h3>Productos Relacionados</h3>
+    <div class="related-products">
+  
+    </div>
+  </section>
+
+  <script>
+    const productos = {
+      'alimento-perro-adulto-champion': {
+        nombre: 'Alimento para Perro Adulto Carne y Pollo 15 kg',
+        precio: 20990,
+        imagenes: [
+          'Img_productos/AlimentoPerroAdultoChampion.webp',
+          'Img_productos/AlimentoPerroAdultoChampion_2.webp',
+          'Img_productos/AlimentoPerroAdultoChampion_3.webp'
+        ],
+        descripcion: 'Alimento premium para perros adultos con sabor a carne y pollo. Formulado con nutrientes esenciales para mantener a tu mascota saludable y llena de energía. Contiene vitaminas, minerales y antioxidantes para un sistema inmunológico fuerte.',
+        categoria: 'alimentos'
+      },
+      'alimento-perro-adulto-cachupin': {
+        nombre: 'Alimento para Perro Adulto Carne 25 kg',
+        precio: 41990,
+        imagenes: [
+          'Img_productos/AlimentoPerroAdultoCachupin25kg.webp',
+          'Img_productos/AlimentoPerroAdultoCachupin25kg_2.webp',
+          'Img_productos/AlimentoPerroAdultoCachupin25kg_3.webp'
+        ],
+        descripcion: 'Alimento para perros adultos con alto contenido de proteína de carne. Ideal para razas grandes y perros activos. Ayuda a mantener una musculatura fuerte y un pelaje brillante.',
+        categoria: 'alimentos'
+      },
+      'salsa-perro': {
+        nombre: 'Salsa para perro carne al jugo 300gr',
+        precio: 1990,
+        imagenes: [
+          'Img_productos/SalsaPerro300gr.webp',
+          'Img_productos/SalsaPerro300gr_2.webp',
+          'Img_productos/SalsaPerro300gr_3.webp'
+        ],
+        descripcion: 'Salsa deliciosa para complementar la alimentación de tu perro. Mejora el sabor del alimento seco y estimula el apetito. Elaborada con ingredientes naturales sin conservantes artificiales.',
+        categoria: 'alimentos'
+      },
+      'casa-perro': {
+        nombre: 'Casa de Perro 81.5x78.5x87.7 cm talla L',
+        precio: 49990,
+        imagenes: [
+          'Img_productos/CasaPerroTallaL.webp',
+          'Img_productos/CasaPerroTallaL_2.webp',
+          'Img_productos/CasaPerroTallaL_3.webp'
+        ],
+        descripcion: 'Casa resistente para perros de raza grande. Fabricada con materiales de alta calidad que protegen contra la intemperie. Diseño con base elevada para evitar la humedad y tejado inclinado para el desagüe de agua.',
+        categoria: 'accesorios'
+      }
+    };
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productoId = urlParams.get('id') || 'alimento-perro-adulto-champion';
+
+    function cargarProducto() {
+      const producto = productos[productoId];
+      if (!producto) return;
+
+
+      document.getElementById('product-title').textContent = producto.nombre;
+      document.getElementById('product-price').textContent = `$${producto.precio.toLocaleString()}`;
+      document.getElementById('product-description').textContent = producto.descripcion;
+      document.getElementById('producto-actual').textContent = producto.nombre;
+
+
+      const mainImage = document.getElementById('main-product-image');
+      const thumbnails = document.querySelectorAll('.thumbnail img');
+      
+      if (producto.imagenes.length > 0) {
+        mainImage.src = producto.imagenes[0];
+        mainImage.alt = producto.nombre;
+        
+        thumbnails.forEach((thumb, index) => {
+          if (producto.imagenes[index]) {
+            thumb.src = producto.imagenes[index];
+            thumb.alt = `${producto.nombre} - Vista ${index + 1}`;
+          }
+        });
+      }
+
+      cargarProductosRelacionados(producto.categoria);
+    }
+
+
+    function cambiarImagen(elemento) {
+      const thumbnails = document.querySelectorAll('.thumbnail');
+      thumbnails.forEach(thumb => thumb.classList.remove('active'));
+      elemento.classList.add('active');
+      
+      const nuevaImagen = elemento.querySelector('img').src;
+      document.getElementById('main-product-image').src = nuevaImagen;
+    }
+
+
+    function cargarProductosRelacionados(categoria) {
+      const relacionadosContainer = document.querySelector('.related-products');
+      relacionadosContainer.innerHTML = '';
+      
+      const productosRelacionados = Object.entries(productos)
+        .filter(([id, producto]) => producto.categoria === categoria && id !== productoId)
+        .slice(0, 5); 
+      
+      if (productosRelacionados.length === 0) {
+        relacionadosContainer.innerHTML = '<p>No hay productos relacionados disponibles</p>';
+        return;
+      }
+      
+      productosRelacionados.forEach(([id, producto]) => {
+        const productoElement = document.createElement('div');
+        productoElement.className = 'related-product';
+        productoElement.innerHTML = `
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
+          <div class="related-product-info">
+            <div class="related-product-title">${producto.nombre.length > 50 ? producto.nombre.substring(0, 50) + '...' : producto.nombre}</div>
+            <div class="related-product-price">$${producto.precio.toLocaleString()}</div>
+          </div>
+        `;
+        productoElement.addEventListener('click', () => {
+          window.location.href = `DetalleProductos.html?id=${id}`;
+        });
+        relacionadosContainer.appendChild(productoElement);
+      });
+    }
+
+    function agregarAlCarrito() {
+      const producto = productos[productoId];
+      const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+      
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const idx = carrito.findIndex(p => p.id === productoId);
+      
+      if (idx >= 0) {
+        carrito[idx].cantidad += cantidad;
+      } else {
+        carrito.push({
+          id: productoId,
+          nombre: producto.nombre,
+          precio: producto.precio,
+          imagen: producto.imagenes[0],
+          descripcion: producto.descripcion,
+          cantidad: cantidad
+        });
+      }
+      
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarContadorCarrito();
+      alert('Producto añadido al carrito');
+    }
+
+    function eliminarProductoDelCarrito(idx, event) {
+      if (event) event.stopPropagation();
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.splice(idx, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      mostrarDetalleCarrito();
+      actualizarContadorCarrito();
+    }
+
+    function mostrarDetalleCarrito() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const contenedor = document.getElementById('carrito-detalle');
+      if (!contenedor) return;
+      
+      let html = '<h3>Productos en el carrito</h3><ul style="list-style:none; padding:0;">';
+      
+      if (carrito.length === 0) {
+        html += '<li>El carrito está vacío</li>';
+      } else {
+        carrito.forEach((prod, idx) => {
+          html += `<li>
+            ${prod.nombre} x${prod.cantidad || 1} - $${(prod.precio * (prod.cantidad || 1)).toLocaleString()}
+            <button onclick="eliminarProductoDelCarrito(${idx}, event)" style="color:red; border:none; background:none; font-size:16px; margin-left:10px; cursor:pointer;">✖</button>
+          </li>`;
+        });
+      }
+      
+      html += '</ul>';
+      html += `<button onclick="window.location.href='CarritoCompra.html'" style="margin-top:10px; padding:8px 16px;">Ir al carrito</button>`;
+      contenedor.innerHTML = html;
+      contenedor.style.display = 'block';
+    }
+    function actualizarContadorCarrito() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const total = carrito.reduce((sum, prod) => sum + (prod.cantidad || 1), 0);
+      const contador = document.getElementById('cart-count');
+      if (contador) contador.textContent = total;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      cargarProducto();
+      
+      const cartImg = document.querySelector('.cart img');
+      if (cartImg) {
+        cartImg.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mostrarDetalleCarrito();
+        });
+      }
+      document.addEventListener('click', function(e) {
+        const contenedor = document.getElementById('carrito-detalle');
+        const cartElement = document.querySelector('.cart');
+        
+        if (contenedor && contenedor.style.display === 'block' && 
+            !contenedor.contains(e.target) && !cartElement.contains(e.target)) {
+          contenedor.style.display = 'none';
+        }
+      });
+      actualizarContadorCarrito();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos</title>
+  <link rel="stylesheet" href="Productos.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1px 30px;
+      position: fixed;      /* Hace que la barra sea fija */
+      top: 0;               /* La coloca arriba */
+      left: 0;
+      width: 100%;          /* Ocupa todo el ancho */
+      z-index: 1000;  
+      box-sizing: border-box;
+    }
+    header nav a {
+      margin: 0 35px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .cart {
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      margin-left: 20px;
+      white-space: nowrap; /* Evita que se corte la palabra */
+    }
+    h1 {
+      text-align: center;
+      margin: 100px 0 30px 0;
+      color: #333;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 33px;
+      padding: 115px;
+      max-width: 1300px;
+      margin:  auto;
+    }
+  </style>
+<head>
+<body>
+  <script src="carrito.js"></script>
+  <script src="productos.js"></script>
+<header>
+  <div class="logo">
+    <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+  </div>
+  <nav>
+    <a href="PaginaPrincipalHome.html">Home</a>
+    <a href="#">Productos</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Blogs</a>
+    <a href="#">Contacto</a>
+  </nav>
+<div class="cart">
+  <img src="Imagenes/CarritoCompraBlanco.png" alt="Carrito" style="height:40px; vertical-align:middle;">
+  <span id="cart-count" style="background:red; color:white; border-radius:50%; padding:2px 8px; font-size:14px; position:relative; left:-15px; top:-10px;">0</span>
+  <div id="carrito-detalle" style="position:fixed; top:70px; right:30px; background:#fff; border:1px solid #ccc; padding:15px; display:none; z-index:2000;"></div>
+</div>
+</header>
+
+
+<!-- Ajusta el margen superior del título -->
+<h1 style="margin-top:160px;">CATÁLOGO DE PRODUCTOS</h1>
+
+<!-- Corrige el cierre de la etiqueta del filtro y aumenta el margen superior -->
+<section style="text-align:center; margin-top:30px; margin-bottom: 20px;">
+  <label for="categoriaFiltro">Filtro:</label>
+  <select id="categoriaFiltro">
+    <option value="todos">Todos los productos</option>
+    <option value="alimentos">Alimentos</option>
+    <option value="accesorios">Accesorios</option>
+  </select>
+
+
+<section
+
+
+class="products">
+
+
+<h2 style="grid-column: 1 / -1; text-align: left;  margin-top:0; margin-bottom:10px; " data-categoria="Alimentos" >PRODUCTOS DISPONIBLES: </h2>
+  <!-- Producto 1 -->
+  <div class="product" data-categoria="alimentos"  onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoChampion.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne y Pollo 15 kg</p>
+    <p class="price">$20.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Producto 2 -->
+  <div class="product" data-categoria="alimentos"  onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoCachupin25kg.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne 25 kg</p>
+    <p class="price">$41.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Producto 3 -->
+  <div class="product" data-categoria="alimentos" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/SalsaPerro300gr.webp" alt="Salsa para perro">
+    </div>
+    <p class="product-title">Salsa para perro carne al jugo 300gr</p>
+    <p class="price">$1.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Producto 4 -->
+  <div class="product" data-categoria="alimentos" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoChampionDog3kg.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne pollo y vegetales 3 kg</p>
+    <p class="price">$8.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Productos restantes (Accesorios) -->
+
+ 
+  <!-- Accesorios 1 -->
+    <div class="product" data-categoria="accesorios"  onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/CasaPerroTallaL.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Casa de Perro 81.5x78.5x87.7 cm talla L</p>
+    <p class="price">$49.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Accesorios 2 -->
+  <div class="product" data-categoria="accesorios"  onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/BolsoMascotaGatoMultifuncional.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Bolso Transportador Para Mascota Gato Perros Multifuncional</p>
+    <p class="price">$39.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Accesorios 3 -->
+  <div class="product" data-categoria="accesorios" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/ContenedorComidaMascota20kf.webp" alt="Salsa para perro">
+    </div>
+    <p class="product-title">Contenedor de comida para mascotas 20kg</p>
+    <p class="price">$16.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Accesorios 4 -->
+  <div class="product" data-categoria="accesorios" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/RascadorGato137cm.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Rascador para gato 137 cm</p>
+    <p class="price">$32.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+</section>
+
+
+<script>
+function eliminarProductoDelCarrito(idx, event) {
+  if (event) event.stopPropagation();
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  carrito.splice(idx, 1);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  mostrarDetalleCarrito();
+  actualizarContadorCarrito();
+}
+
+function mostrarDetalleCarrito() {
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const contenedor = document.getElementById('carrito-detalle');
+  if (!contenedor) return;
+  let html = '<h3>Productos en el carrito</h3><ul style="list-style:none; padding:0;">';
+  carrito.forEach((prod, idx) => {
+    html += `<li>
+      ${prod.nombre} x${prod.cantidad || 1} - $${prod.precio * (prod.cantidad || 1)}
+      <button onclick="eliminarProductoDelCarrito(${idx}, event)" style="color:red; border:none; background:none; font-size:16px; margin-left:10px; cursor:pointer;">✖</button>
+    </li>`;
+  });
+  html += '</ul>';
+  html += `<button onclick="window.location.href='CarritoCompra.html'" style="margin-top:10px; padding:8px 16px;">Ir al carrito</button>`;
+  contenedor.innerHTML = html;
+  contenedor.style.display = 'block';
+}
+
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const total = carrito.reduce((sum, prod) => sum + (prod.cantidad || 1), 0);
+  const contador = document.getElementById('cart-count');
+  if (contador) contador.textContent = total;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Añadir producto al carrito
+  document.querySelectorAll('.add-button').forEach((btn) => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const productDiv = btn.closest('.product');
+      const nombre = productDiv.querySelector('.product-title') ? productDiv.querySelector('.product-title').textContent : '';
+      const precio = productDiv.querySelector('.price') ? parseInt(productDiv.querySelector('.price').textContent.replace(/[^0-9]/g, '')) : 0;
+      const imagen = productDiv.querySelector('.product-image-container img') ? productDiv.querySelector('.product-image-container img').src : '';
+      const descripcion = '';
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const idx = carrito.findIndex(p => p.nombre === nombre);
+      if (idx >= 0) {
+        carrito[idx].cantidad = (carrito[idx].cantidad || 1) + 1;
+      } else {
+        carrito.push({ nombre, precio, imagen, descripcion, cantidad: 1 });
+      }
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarContadorCarrito();
+      alert('Producto añadido al carrito');
+    });
+  });
+
+  // Mostrar el detalle del carrito al hacer clic en el ícono
+  document.querySelector('.cart img').addEventListener('click', function(e) {
+    e.stopPropagation();
+    mostrarDetalleCarrito();
+  });
+
+  // Ocultar el detalle si se hace clic fuera del contenedor
+  document.addEventListener('click', function(e) {
+    const contenedor = document.getElementById('carrito-detalle');
+    // Si el carrito está visible y el click NO fue en el carrito ni en el icono, lo ocultamos
+    if (
+      contenedor &&
+      contenedor.style.display === 'block' &&
+      !contenedor.contains(e.target) &&
+      !(e.target === document.querySelector('.cart img'))
+    ) {
+      contenedor.style.display = 'none';
+    }
+  });
+
+  // Actualiza el contador al cargar la página
+  actualizarContadorCarrito();
+});
+</script>
+
+</body>
+</html>

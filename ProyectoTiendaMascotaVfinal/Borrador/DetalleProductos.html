@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Producto.js">
+  <title>Detalle Producto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    header nav a {
+      margin: 0 55px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .cart {
+      font-weight: bold;
+    }
+    .breadcrumb {
+      margin: 20px;
+      font-size: 14px;
+    }
+    .breadcrumb a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .product-detail {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+    .product-images {
+      flex: 1;
+    }
+    .main-image {
+      width: 100%;
+      height: 300px;
+      background: #ddd;
+      margin-bottom: 10px;
+    }
+    .thumbnail-images {
+      display: flex;
+      gap: 10px;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      background: #ccc;
+      border: 2px solid transparent;
+    }
+    .thumbnail.active {
+      border-color: blue;
+    }
+    .product-info {
+      flex: 1;
+    }
+    .product-info h1 {
+      margin: 0 0 10px;
+    }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .description {
+      margin: 15px 0;
+      line-height: 1.5;
+    }
+    .quantity {
+      margin: 15px 0;
+    }
+    .quantity input {
+      width: 50px;
+      text-align: center;
+      padding: 5px;
+    }
+    .add-to-cart {
+      background: #0066ff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .add-to-cart:hover {
+      background: #0044aa;
+    }
+    .related {
+      padding: 20px;
+    }
+    .related h3 {
+      margin-bottom: 10px;
+    }
+    .related-products {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .related-products div {
+      height: 120px;
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+  </div>
+  <nav>
+    <a href="PaginaPrincipalHome.html">Home</a>
+    <a href="#">Productos</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Blogs</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <div class="cart">Carrito</div>
+</header>
+
+<div class="breadcrumb">
+  <a href="#">Home</a> > <a href="#">Category X</a> > Product Title
+</div>
+
+<section class="product-detail">
+  <div class="product-images">
+    <div class="main-image"></div>
+    <div class="thumbnail-images">
+      <div class="thumbnail active"></div>
+      <div class="thumbnail"></div>
+      <div class="thumbnail"></div>
+    </div>
+  </div>
+  <div class="product-info">
+    <h1>Nombre Producto</h1>
+    <p class="price">$100</p>
+    <p class="description">
+      Las manzanas son una fruta deliciosa y versátil, apreciada en todo el mundo por su sabor refrescante y sus numerosos beneficios para la salud. 
+      Disponibles en una variedad de colores, desde el rojo vibrante hasta el verde brillante y el amarillo dorado, 
+      las manzanas son una opción perfecta para cualquier ocasión, ya sea como un refrigerio saludable.
+    </p>
+    <div class="quantity">
+      <label for="cantidad">Cantidad</label>
+      <input type="number" id="cantidad" value="1" min="1">
+    </div>
+    <button class="add-to-cart">Añadir al carrito</button>
+  </div>
+</section>
+
+<section class="related">
+  <h3>Related Products</h3>
+  <div class="related-products">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</section>
+
+</body>
+</html>

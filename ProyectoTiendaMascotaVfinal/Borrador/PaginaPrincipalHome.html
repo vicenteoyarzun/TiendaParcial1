@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de mascotas</title>
+  <link rel="stylesheet" href="Home.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+       }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1px 30px;
+      position: fixed;      /* Hace que la barra sea fija */
+      top: 0;               /* La coloca arriba */
+      left: 0;
+      width: 100%;          /* Ocupa todo el ancho */
+      z-index: 1000;  
+      box-sizing: border-box;
+    }
+    header nav a {
+      margin: 0 35px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .cart {
+      font-weight: bold;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #eee;
+      padding: 20px;
+    }
+    .hero button {
+      padding: 10px 15px;
+      background: white;
+      border: 1px solid rgb(0, 0, 0);
+      cursor: pointer;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 33px;
+      padding: 220px;
+    }
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    footer {
+      background: #ffffff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .newsletter input {
+      padding: 5px;
+    }
+    .newsletter button {
+      padding: 6px 10px;
+      margin-left: 5px;
+    }
+  </style>
+<header>
+<head>
+<body>
+  <div class="logo">
+    <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+  </div>
+  <nav>
+    <a href="PaginaPrincipalHome.html">Home</a>
+    <a href="Productos.html">Productos</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Blogs</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <div class="cart">Carrito</div>
+</header>
+
+
+<div class="hero">
+  <div class="text">
+    <h1>TIENDA PARA MASCOTAS ONLINE</h1>
+    <p>Descubre nuevos productos para tus queridas mascotas, desde las mejores comidas hasta accesorios y más!</p>
+    <button onclick="location.href='Productos.html'">Ver productos</button> <!--Boton ver producto-->
+
+  </div> <!--Modificar imagen principal (Tienda online)-->
+  <div class="image">
+    <img src="Imagenes/Mascotas.jpg" alt="Banner"  style="width:1350px; height:650px; background:#ffffff;">
+  </div>
+</div>
+
+<section class="products">
+  <!-- Producto 1 -->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoChampion.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne y Pollo 15 kg</p>
+    <p class="price">$20.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Producto 2 -->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoCachupin25kg.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne 25 kg</p>
+    <p class="price">$41.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Producto 3 -->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/SalsaPerro300gr.webp" alt="Salsa para perro">
+    </div>
+    <p class="product-title">Salsa para perro carne al jugo 300gr</p>
+    <p class="price">$1.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+
+  <!-- Producto 4 -->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoChampionDog3kg.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne pollo y vegetales 3 kg</p>
+    <p class="price">$8.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+    <!-- Producto 5 -->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoChampionDog3kg.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne pollo y vegetales 3 kg</p>
+    <p class="price">$8.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+    <!-- Producto 6 -->
+  <div class="product" onclick="location.href='DetalleProductos.html'" style="cursor: pointer;">
+    <div class="product-image-container">
+      <img src="Img_productos/AlimentoPerroAdultoChampionDog3kg.webp" alt="Alimento para perro adulto">
+    </div>
+    <p class="product-title">Alimento para Perro Adulto Carne pollo y vegetales 3 kg</p>
+    <p class="price">$8.990</p>
+    <button class="add-button">Añadir a carrito</button>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <p>Tienda online</p>
+    <a href="#">Category X</a> | <a href="#">Category Y</a> | <a href="#">Category Z</a>
+  </div>
+  <div class="newsletter">
+    <label>Suscríbete: </label>
+    <input type="email" placeholder="Enter email">
+    <button>Subscribe</button>
+  </div>
+</footer>
+
+</body>
+</html>
