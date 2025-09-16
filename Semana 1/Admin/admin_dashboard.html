@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Dashboard</title>
+  <link rel="stylesheet" href="Home.css">
+  <style>
+    :root { --sidebar-w:220px; --accent:#ff9443; }
+    body { margin:0; font-family: Arial, sans-serif; background:#f9f9f9; }
+    .sidebar {
+      position:fixed; left:0; top:0; bottom:0; width:var(--sidebar-w);
+      background:var(--accent); color:white; display:flex; flex-direction:column;
+      align-items:center; padding:20px 10px; box-sizing:border-box;
+    }
+    .sidebar img { max-width:120px; margin-bottom:20px; }
+    .menu { display:flex; flex-direction:column; width:100%; }
+    .menu a {
+      color:white; text-decoration:none; padding:12px 15px; border-radius:6px;
+      margin:4px 0; transition:background 0.3s;
+    }
+    .menu a:hover, .menu a.active { background:rgba(255,255,255,0.2); }
+    main { margin-left:var(--sidebar-w); padding:24px; min-height:100vh; }
+    .topbar {
+      display:flex; justify-content:space-between; align-items:center;
+      background:white; padding:12px 20px; border-radius:6px; margin-bottom:20px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+    h1 { margin:0; color:#333; }
+    .btn-logout {
+      padding:8px 14px; background:#ff9443; color:white; border:none;
+      border-radius:6px; cursor:pointer; font-weight:bold;
+    }
+    .btn-logout:hover { background:#e6833a; }
+    .card {
+      background:white; border:1px solid #eee; padding:18px; border-radius:8px;
+      margin-bottom:16px; box-shadow:0 2px 4px rgba(0,0,0,0.05);
+    }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .btn-new {
+      background:#000; color:white; padding:8px 14px; border-radius:6px;
+      cursor:pointer; border:none; font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="Imagenes/LogoPaginaweb.png" alt="Logo">
+    <div class="menu">
+      <a class="active" href="admin_dashboard.html">Dashboard</a>
+      <a href="admin_users.html">Usuarios</a>
+      <a href="#">Inventario</a>
+      <a href="#">Reportes</a>
+      <a href="#">Empleados</a>
+     
+    </div>
+  </div>
+
+  <main>
+    <div class="topbar">
+      <h1>¡HOLA Administrador!</h1>
+      <button class="btn-logout" id="btnLogout">Cerrar sesión</button>
+    </div>
+
+    <div class="card">
+      <h3>Panel principal</h3>
+      <p>Resumen rápido (datos de ejemplo).</p>
+      <div class="grid" style="margin-top:12px;">
+        <div class="card">
+          <strong>Ventas hoy</strong>
+          <div style="font-size:22px; margin-top:8px;">$2.450.000</div>
+        </div>
+        <div class="card">
+          <strong>Pedidos pendientes</strong>
+          <div style="font-size:22px; margin-top:8px;">18</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="margin:0;">Actividades recientes</h3>
+        <button class="btn-new" onclick="location.href='admin_users.html'">NUEVO USUARIO</button>
+      </div>
+      <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+        <thead>
+          <tr style="background:#f7f7f7;">
+            <th style="padding:8px; text-align:left;">Fecha</th>
+            <th style="padding:8px; text-align:left;">Evento</th>
+            <th style="padding:8px; text-align:left;">Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:8px;">2025-09-01</td><td>Nuevo pedido</td><td>cliente123</td></tr>
+          <tr><td style="padding:8px;">2025-09-01</td><td>Registro usuario</td><td>juan.p</td></tr>
+          <tr><td style="padding:8px;">2025-09-02</td><td>Producto agregado</td><td>admin</td></tr>
+          <tr><td style="padding:8px;">2025-09-03</td><td>Stock actualizado</td><td>bodega1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    if(localStorage.getItem('isAdmin') !== 'true') {
+      alert('Acceso restringido a administradores.');
+      location.href = 'PaginaPrincipalHome.html';
+    }
+    document.getElementById('btnLogout').addEventListener('click', () => {
+      localStorage.removeItem('isAdmin');
+      localStorage.removeItem('loggedUser');
+      location.href = 'PaginaPrincipalHome.html';
+    });
+  </script>
+</body>
+</html>

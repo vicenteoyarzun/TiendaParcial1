@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros</title>
+  <link rel="stylesheet" href="nosotros.css">
+  <link rel="stylesheet" href="Productos.css">
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-sizing: border-box;
+      
+    }
+
+    header nav a {
+      margin: 0 35px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .cart {
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      margin-left: 20px;
+      white-space: nowrap;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    #carrito-detalle {
+      position: fixed;
+      top: 70px;
+      right: 30px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+      z-index: 2000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    .contenido-principal {
+      margin-top: 100px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+    </div>
+    <nav>
+      <a href="PaginaPrincipalHome.html">Home</a>
+      <a href="Productos.html">Productos</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="Blogs.html">Blogs</a>
+      <a href="Contacto.html">Contacto</a>
+    </nav>
+    <div class="cart">
+      <img src="Imagenes/CarritoCompraBlanco.png" alt="Carrito" style="height:40px; vertical-align:middle;">
+      <span id="cart-count" style="background:red; color:white; border-radius:50%; padding:2px 8px; font-size:14px; position:relative; left:-15px; top:-10px;">0</span>
+      <div id="carrito-detalle"></div>
+    </div>
+  </header>
+
+  <div class="contenido-principal">
+    <h1>¿Quienes somos?</h1>
+    <p>Somos una tienda de productos para gatos y perros situada en Puerto Montt, Chile en la region de los lagos.</p>
+    <h1>¿Que vendemos?</h1>
+    <p>Vendemos principalmente los siguientes productos:</p>
+    <ul>
+        <li>Comida para gatos y perros</li>
+        <li>Juguetes para mascotas</li>
+        <li>accesorios para mascotas</li>
+    </ul>
+    <h1>Nuestros origenes</h1>
+    <p>Nuestra empresa nacio el 2024 con el fin de la pandemia debido a que se detecto una falta en el mercado de las mascotas despues de que se cerraran negocios pequeños debido a la crisis economica post pandemia.
+        Esta empresa busca siempre la mayor calidad para sus clientes y sus mascotas a un precio accesible.
+    </p>
+  </div>
+
+  <script>
+    function eliminarProductoDelCarrito(idx, event) {
+      if (event) event.stopPropagation();
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.splice(idx, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      mostrarDetalleCarrito();
+      actualizarContadorCarrito();
+    }
+    function mostrarDetalleCarrito() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const contenedor = document.getElementById('carrito-detalle');
+      if (!contenedor) return;
+      
+      let html = '<h3>Productos en el carrito</h3><ul style="list-style:none; padding:0;">';
+      
+      if (carrito.length === 0) {
+        html += '<li>El carrito está vacío</li>';
+      } else {
+        carrito.forEach((prod, idx) => {
+          html += `<li>
+            ${prod.nombre} x${prod.cantidad || 1} - $${prod.precio * (prod.cantidad || 1)}
+            <button onclick="eliminarProductoDelCarrito(${idx}, event)" style="color:red; border:none; background:none; font-size:16px; margin-left:10px; cursor:pointer;">✖</button>
+          </li>`;
+        });
+      }
+      
+      html += '</ul>';
+      html += `<button onclick="window.location.href='CarritoCompra.html'" style="margin-top:10px; padding:8px 16px;">Ir al carrito</button>`;
+      contenedor.innerHTML = html;
+      contenedor.style.display = 'block';
+    }
+
+    function actualizarContadorCarrito() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const total = carrito.reduce((sum, prod) => sum + (prod.cantidad || 1), 0);
+      const contador = document.getElementById('cart-count');
+      if (contador) contador.textContent = total;
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mostrar el detalle del carrito al hacer clic en el ícono
+      const cartImg = document.querySelector('.cart img');
+      if (cartImg) {
+        cartImg.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mostrarDetalleCarrito();
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        const contenedor = document.getElementById('carrito-detalle');
+        const cartElement = document.querySelector('.cart');
+        
+        if (contenedor && contenedor.style.display === 'block' && 
+            !contenedor.contains(e.target) && !cartElement.contains(e.target)) {
+          contenedor.style.display = 'none';
+        }
+      });
+
+  
+      actualizarContadorCarrito();
+    });
+  </script>
+</body>
+</html>

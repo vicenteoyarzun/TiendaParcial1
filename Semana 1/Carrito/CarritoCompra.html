@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="CarritoCompra.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+    header nav a {
+      margin: 0 55px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+    .cart {
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+    }
+    main {
+      display: flex;
+      padding: 20px;
+      margin-top: 170px;
+    }
+    .productos {
+      flex: 2;
+    }
+    .producto {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+    .producto img {
+      width: 120px;
+      height: 120px;
+      background: #ccc;
+      margin-right: 15px;
+    }
+    .producto-info {
+      flex: 1;
+    }
+    .precio {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .cantidad {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #333;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .cantidad button {
+      border: none;
+      background: #fff;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .cantidad input {
+      width: 40px;
+      text-align: center;
+      border: none;
+    }
+    .resumen {
+      flex: 1;
+      margin-left: 30px;
+      border-left: 2px solid #000;
+      padding-left: 20px;
+    }
+    .resumen h3 {
+      margin-top: 0;
+    }
+    .resumen input {
+      width: calc(100% - 80px);
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    .resumen button {
+      width: 100%;
+      background: green;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #carrito-detalle {
+      position: fixed;
+      top: 70px;
+      right: 30px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+      z-index: 2000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+    </div>
+    <nav>
+      <a href="PaginaPrincipalHome.html">Home</a>
+      <a href="Productos.html">Productos</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="Blogs.html">Blogs</a>
+      <a href="Contacto.html">Contacto</a>
+    </nav>
+    <div class="cart">
+      <img src="Imagenes/CarritoCompraBlanco.png" alt="Carrito" style="height:40px; vertical-align:middle;">
+      <span id="cart-count" style="background:red; color:white; border-radius:50%; padding:2px 8px; font-size:14px; position:relative; left:-15px; top:-10px;">0</span>
+      <div id="carrito-detalle"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="productos">
+      <h2>Mi carrito de compras</h2>
+    </section>
+
+    <aside class="resumen">
+      <h3 id="total-carrito">TOTAL: $0</h3>
+      <input type="text" placeholder="Ingrese el cupón de descuento">
+      <button>APLICAR</button>
+      <button>PAGAR</button>
+    </aside>
+  </main>
+
+  <script>
+    function obtenerCarrito() {
+      return JSON.parse(localStorage.getItem('carrito')) || [];
+    }
+
+    // Función para guardar el carrito en localStorage
+    function guardarCarrito(carrito) {
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    // Función para eliminar un producto del carrito
+    function eliminarProductoDelCarrito(idx, event) {
+      if (event) event.stopPropagation();
+      let carrito = obtenerCarrito();
+      carrito.splice(idx, 1);
+      guardarCarrito(carrito);
+      mostrarDetalleCarrito();
+      mostrarCarrito();
+      actualizarContadorCarrito();
+    }
+    function mostrarDetalleCarrito() {
+      const carrito = obtenerCarrito();
+      const contenedor = document.getElementById('carrito-detalle');
+      let html = '<h3>Productos en el carrito</h3><ul style="list-style:none; padding:0;">';
+      
+      if (carrito.length === 0) {
+        html += '<li>El carrito está vacío</li>';
+      } else {
+        carrito.forEach((prod, idx) => {
+          html += `<li>
+            ${prod.nombre} x${prod.cantidad || 1} - $${prod.precio * (prod.cantidad || 1)}
+            <button onclick="eliminarProductoDelCarrito(${idx}, event)" style="color:red; border:none; background:none; font-size:16px; margin-left:10px; cursor:pointer;">✖</button>
+          </li>`;
+        });
+      }
+      
+      html += '</ul>';
+      html += `<button onclick="window.location.href='CarritoCompra.html'" style="margin-top:10px; padding:8px 16px;">Ir al carrito</button>`;
+      contenedor.innerHTML = html;
+      contenedor.style.display = 'block';
+    }
+
+    function mostrarCarrito() {
+      const productos = obtenerCarrito();
+      const contenedor = document.querySelector('.productos');
+      let html = '<h2>Mi carrito de compras</h2>';
+      let total = 0;
+
+      if (productos.length === 0) {
+        html += '<p>No hay productos en el carrito</p>';
+      } else {
+        productos.forEach((producto, idx) => {
+          const subtotal = producto.precio * (producto.cantidad || 1);
+          total += subtotal;
+          html += `
+            <div class="producto">
+              <img src="${producto.imagen || '#'}" alt="${producto.nombre}">
+              <div class="producto-info">
+                <h3>${producto.nombre}</h3>
+                <p>${producto.descripcion || ''}</p>
+              </div>
+              <span class="precio">$ ${subtotal}</span>
+              <div class="cantidad">
+                <button onclick="cambiarCantidad(${idx}, -1)">-</button>
+                <input type="text" value="${producto.cantidad || 1}" readonly>
+                <button onclick="cambiarCantidad(${idx}, 1)">+</button>
+              </div>
+              <button onclick="eliminarProductoDelCarrito(${idx}, event)" style="color:red; border:none; background:none; font-size:16px; margin-left:10px; cursor:pointer;">Eliminar</button>
+            </div>
+          `;
+        });
+      }
+
+      contenedor.innerHTML = html;
+      document.getElementById('total-carrito').textContent = `TOTAL: $${total}`;
+    }
+    function cambiarCantidad(idx, delta) {
+      const carrito = obtenerCarrito();
+      carrito[idx].cantidad = Math.max(1, (carrito[idx].cantidad || 1) + delta);
+      guardarCarrito(carrito);
+      mostrarCarrito();
+      actualizarContadorCarrito();
+    }
+    function actualizarContadorCarrito() {
+      const carrito = obtenerCarrito();
+      const total = carrito.reduce((sum, prod) => sum + (prod.cantidad || 1), 0);
+      const contador = document.getElementById('cart-count');
+      if (contador) contador.textContent = total;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const cartImg = document.querySelector('.cart img');
+      if (cartImg) {
+        cartImg.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mostrarDetalleCarrito();
+        });
+      }
+      document.addEventListener('click', function(e) {
+        const contenedor = document.getElementById('carrito-detalle');
+        const cartElement = document.querySelector('.cart');
+        
+        if (contenedor && !contenedor.contains(e.target) && !cartElement.contains(e.target)) {
+          contenedor.style.display = 'none';
+        }
+      });
+      mostrarCarrito();
+      actualizarContadorCarrito();
+    });
+  </script>
+</body>
+</html>

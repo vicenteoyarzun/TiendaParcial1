@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Tienda de Mascotas</title>
+  <style>
+    /* Estilos generales inspirados en la página principal */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #f9f9f9;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Header con logo y botones de auth */
+    .header {
+        background: #ff9443;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .logo img {
+        height: 60px;
+    }
+    
+    .back-button {
+        padding: 8px 15px;
+        background: white;
+        color: #ff9443;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    
+    .back-button:hover {
+        background: #f0f0f0;
+        transform: translateY(-2px);
+    }
+    
+    /* Contenedor de login */
+    .login-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        margin: 2rem auto;
+    }
+    
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    label {
+        margin-bottom: 0.5rem;
+        color: #34495e;
+        font-weight: bold;
+    }
+    
+    input {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    
+    input:focus {
+        outline: none;
+        border-color: #ff9443;
+        box-shadow: 0 0 5px rgba(255, 148, 67, 0.5);
+    }
+    
+    button[type="submit"] {
+        background-color: #ff9443;
+        color: white;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+    }
+    
+    button[type="submit"]:hover {
+        background-color: #e6833a;
+    }
+    
+    #error-message {
+        text-align: center;
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+    
+    .register-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #34495e;
+    }
+    
+    .register-link a {
+        color: #ff9443;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+    
+    .note {
+        font-size: 13px;
+        color: #888;
+        margin-top: 6px;
+        text-align: center;
+        background: #fff8e1;
+        padding: 8px;
+        border-radius: 4px;
+        border-left: 3px solid #ffc107;
+    }
+    
+    footer {
+        background: #f9f9f9;
+        padding: 20px;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+    <!-- Header con logo y botón de volver -->
+    <div class="header">
+        <div class="logo">
+            <img src="Imagenes/LogoPaginaweb.png" alt="Logo Tienda Mascotas">
+        </div>
+        <button class="back-button" onclick="location.href='PaginaPrincipalHome.html'">Volver al Inicio</button>
+    </div>
+
+    <!-- Formulario de login -->
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        
+        <div class="note">
+            <strong>Credenciales de prueba:</strong><br>
+            Admin: usuario "admin", contraseña "root"<br>
+            Cliente: usuario "Cliente321", contraseña "321123"
+        </div>
+        
+        <form id="loginForm">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" placeholder="Ingresa tu nombre de usuario" required>
+            
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+            
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p id="error-message"></p>
+        
+        <div class="register-link">
+            <p>¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>TiendaMascotasChile&copy;2025</p>
+    </footer>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const errorMessage = document.getElementById("error-message");
+        const USERCLI = 'Cliente321';
+        const PASSCLI = '321123';
+        const USERADM = 'admin';
+        const PASSADM = 'root';
+        
+        loginForm.addEventListener('submit', function(event){
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if(username === USERCLI && password === PASSCLI){
+                errorMessage.style.color = 'green';
+                errorMessage.textContent = 'Inicio de sesión exitoso. Redirigiendo...';
+                localStorage.setItem('isAdmin', 'false');
+                localStorage.setItem('loggedUser', username);
+                
+                // Redirigir después de 2 segundos
+                setTimeout(function() {
+                    window.location.href = 'PaginaPrincipalHome.html';
+                }, 2000);
+            } else if(username === USERADM && password === PASSADM){
+                errorMessage.style.color = 'green';
+                errorMessage.textContent = 'Inicio de sesión administrativo exitoso. Redirigiendo...';
+                localStorage.setItem('isAdmin', 'true');
+                localStorage.setItem('loggedUser', username);
+                
+                // Redirigir después de 2 segundos
+                setTimeout(function() {
+                    window.location.href = 'admin_dashboard.html';
+                }, 2000);
+            } else {
+                errorMessage.style.color = 'red';
+                errorMessage.textContent = 'Usuario o contraseña incorrectos';
+            }
+        });
+    </script>
+</body>
+</html>
+

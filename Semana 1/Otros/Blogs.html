@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="Productos.css" />
+  <title>Noticias - Blogs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background: #ff9443;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+
+    header nav a {
+      margin: 0 35px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .cart {
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      margin-left: 20px;
+      white-space: nowrap;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    #carrito-detalle {
+      position: fixed;
+      top: 70px;
+      right: 30px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+      z-index: 2000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    
+    main {
+      max-width: 1200px;
+      margin: 100px auto 40px;
+      padding: 0 20px;
+    }
+    
+    .center {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ff6a00;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .center::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background-color: #ff8c00;
+      border-radius: 2px;
+    }
+    
+    .noticia {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .noticia:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .texto {
+      flex: 3;
+      padding: 30px;
+    }
+    
+    .imagen {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background-color: #ffe4cc;
+    }
+    
+    .imagen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .noticia:hover .imagen img {
+      transform: scale(1.05);
+    }
+    
+    .imagen-placeholder {
+      color: #ff8c00;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    h3 {
+      color: #ff6a00;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    button {
+      background-color: #ff8c00;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(255,140,0,0.3);
+    }
+    
+    button:hover {
+      background-color: #ff6a00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(255,106,0,0.4);
+    }
+    
+    /* Diseño responsivo */
+    @media (max-width: 900px) {
+      .noticia {
+        flex-direction: column;
+      }
+      
+      .imagen {
+        min-height: 250px;
+        order: -1;
+      }
+      
+      header {
+        padding: 15px;
+      }
+      
+      header nav a {
+        margin: 0 15px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .logo img {
+        height: 40px;
+      }
+      
+      h2.center {
+        font-size: 1.8rem;
+      }
+      
+      .texto, .imagen {
+        padding: 20px;
+      }
+      
+      header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+      }
+      
+      header nav {
+        margin-top: 10px;
+      }
+      
+      header nav a {
+        margin: 0 10px;
+        font-size: 14px;
+      }
+      
+      .cart {
+        margin-top: 10px;
+        margin-left: 0;
+      }
+      
+      main {
+        margin-top: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Imagenes/LogoPaginaweb.png" alt="LogoPagina">
+    </div>
+    <nav>
+      <a href="PaginaPrincipalHome.html">Home</a>
+      <a href="Productos.html">Productos</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="Blogs.html">Blogs</a>
+      <a href="Contacto.html">Contacto</a>
+    </nav>
+    <div class="cart">
+      <img src="Imagenes/CarritoCompraBlanco.png" alt="Carrito" style="height:40px; vertical-align:middle;">
+      <span id="cart-count" style="background:red; color:white; border-radius:50%; padding:2px 8px; font-size:14px; position:relative; left:-15px; top:-10px;">0</span>
+      <div id="carrito-detalle"></div>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="center">NOTICIAS IMPORTANTES</h2>
+
+    <!-- Caso curioso 1 -->
+    <section class="noticia">
+      <div class="texto">
+        <h3>CASO CURIOSO #1</h3>
+        <p>
+          En Pets Store, el producto más vendido en 2024 fueron los juguetes interactivos
+          para gatos 🐱. Superaron incluso a los snacks para perros.
+        </p>
+        <button onclick="verCaso(1)">VER CASO</button>
+      </div>
+      <div class="imagen">
+        <!-- Reemplaza "ruta/a/tu/imagen1.jpg" con la ruta de tu imagen -->
+        <img src="Imagenes/Gatojugando.jfif" alt="Juguetes interactivos para gatos" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"imagen-placeholder\"><br><small></small></div>
+      </div>
+    </section>
+
+    <!-- Caso curioso 2 -->
+    <section class="noticia">
+      <div class="texto">
+        <h3>CASO CURIOSO #2</h3>
+        <p>
+          Muchos clientes nos cuentan que sus perros 🐕 esperan junto a la puerta cuando
+          llega el repartidor, ¡como si supieran que el paquete es para ellos!
+        </p>
+        <button onclick="verCaso(2)">VER CASO</button>
+      </div>
+      <div class="imagen">
+        <!-- Reemplaza "ruta/a/tu/imagen2.jpg" con la ruta de tu imagen -->
+        <img src="Imagenes/Perroestrella.jpg" width="auto" alt="Perro esperando paquete" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"imagen-placeholder\"><br><small></small></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function obtenerCarrito() {
+      return JSON.parse(localStorage.getItem('carrito')) || [];
+    }
+    function eliminarProductoDelCarrito(idx, event) {
+      if (event) event.stopPropagation();
+      let carrito = obtenerCarrito();
+      carrito.splice(idx, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      mostrarDetalleCarrito();
+      actualizarContadorCarrito();
+    }
+    function mostrarDetalleCarrito() {
+      const carrito = obtenerCarrito();
+      const contenedor = document.getElementById('carrito-detalle');
+      if (!contenedor) return;
+      
+      let html = '<h3>Productos en el carrito</h3><ul style="list-style:none; padding:0;">';
+      
+      if (carrito.length === 0) {
+        html += '<li>El carrito está vacío</li>';
+      } else {
+        carrito.forEach((prod, idx) => {
+          html += `<li>
+            ${prod.nombre} x${prod.cantidad || 1} - $${prod.precio * (prod.cantidad || 1)}
+            <button onclick="eliminarProductoDelCarrito(${idx}, event)" style="color:red; border:none; background:none; font-size:16px; margin-left:10px; cursor:pointer;">✖</button>
+          </li>`;
+        });
+      }
+      
+      html += '</ul>';
+      html += `<button onclick="window.location.href='CarritoCompra.html'" style="margin-top:10px; padding:8px 16px;">Ir al carrito</button>`;
+      contenedor.innerHTML = html;
+      contenedor.style.display = 'block';
+    }
+
+    function actualizarContadorCarrito() {
+      const carrito = obtenerCarrito();
+      const total = carrito.reduce((sum, prod) => sum + (prod.cantidad || 1), 0);
+      const contador = document.getElementById('cart-count');
+      if (contador) contador.textContent = total;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mostrar el detalle del carrito al hacer clic en el ícono
+      const cartImg = document.querySelector('.cart img');
+      if (cartImg) {
+        cartImg.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mostrarDetalleCarrito();
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        const contenedor = document.getElementById('carrito-detalle');
+        const cartElement = document.querySelector('.cart');
+        
+        if (contenedor && contenedor.style.display === 'block' && 
+            !contenedor.contains(e.target) && !cartElement.contains(e.target)) {
+          contenedor.style.display = 'none';
+        }
+      });
+
+      actualizarContadorCarrito();
+    });
+
+    function verCaso(numero) {
+      if (numero === 1) {
+        alert("📌 Detalle del Caso Curioso #1:\n\nLos juguetes interactivos para gatos fueron el producto más vendido en 2024, superando incluso a los snacks para perros.");
+      } else if (numero === 2) {
+        alert("📌 Detalle del Caso Curioso #2:\n\nMuchos clientes nos cuentan que sus perros reconocen al repartidor y esperan ansiosos la llegada de su paquete de Pets Store.");
+      }
+    }
+  </script>
+</body>
+</html>
